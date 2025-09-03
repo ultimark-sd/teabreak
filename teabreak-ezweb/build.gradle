@@ -1,0 +1,66 @@
+plugins {
+	id 'java-gradle-plugin'
+	id 'maven-publish'
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+group = 'io.github.ultimark-sd.teabreak'
+version = '0.0.1-SNAPSHOT'
+
+gradlePlugin {
+	
+	website = 'https://github.com/ultimark-sd/teabreak'
+	vcsUrl = 'https://github.com/ultimark-sd/teabreak'
+
+	plugins {
+		// Code Generator Plugin
+		genesisCodeGen {
+			id = 'io.github.ultimark.sd.teabreak.ezweb'
+			displayName = 'Teabreak EzWeb Plugin'
+			description = 'Original mockup plugin. Any htmls and other static resources can be deployed to Spring Boot managed resources.'
+			tags.set([ 'ultimark' ])
+			implementationClass = 'io.github.ultimark.sd.teabreak.ezweb.EzWebPlugin'
+			version = '0.0.1-SNAPSHOT'
+		}
+	}
+}
+
+publishing{
+
+	publications {
+    maven(MavenPublication) {
+    	groupId = 'io.github.ultimark-sd.teabreak'
+    	artifactId = 'ezweb-plugin'
+    	version = '0.0.1-SNAPSHOT'
+    	
+    	from components.java
+    }
+  }
+	
+	repositories {
+		maven {
+			name = 'snapshot'
+			url = uri('http://localhost:8081/repository/maven-snapshots/')
+			allowInsecureProtocol = true
+			credentials {
+				username 'admin'
+				password '4EwjMbQrei6U'
+			}
+		}
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testImplementation(platform('org.junit:junit-bom:5.12.1'))
+	testImplementation('org.junit.jupiter:junit-jupiter')
+	testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+}
