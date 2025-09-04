@@ -19,7 +19,7 @@ gradlePlugin {
 
 	plugins {
 		// Code Generator Plugin
-		genesisCodeGen {
+		ezWeb {
 			id = 'io.github.ultimark.sd.teabreak.ezweb'
 			displayName = 'Teabreak EzWeb Plugin'
 			description = 'Original mockup plugin. Any htmls and other static resources can be deployed to Spring Boot managed resources.'
@@ -46,6 +46,15 @@ publishing{
 		maven {
 			name = 'snapshot'
 			url = uri('http://localhost:8081/repository/maven-snapshots/')
+			allowInsecureProtocol = true
+			credentials {
+				username 'admin'
+				password '4EwjMbQrei6U'
+			}
+		}
+		maven {
+			name = 'release'
+			url = uri('http://localhost:8081/repository/maven-releases/')
 			allowInsecureProtocol = true
 			credentials {
 				username 'admin'

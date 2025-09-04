@@ -19,7 +19,7 @@ gradlePlugin {
 
 	plugins {
 		// Code Generator Plugin
-		genesisCodeGen {
+		codeGen {
 			id = 'io.github.ultimark.sd.teabreak.codegen'
 			displayName = 'Teabreak CodeGen Plugin'
 			description = 'Code generation plugin based on Doma CodeGen plugin.'
@@ -46,6 +46,15 @@ publishing{
 		maven {
 			name = 'snapshot'
 			url = uri('http://localhost:8081/repository/maven-snapshots/')
+			allowInsecureProtocol = true
+			credentials {
+				username 'admin'
+				password '4EwjMbQrei6U'
+			}
+		}
+		maven {
+			name = 'release'
+			url = uri('http://localhost:8081/repository/maven-releases/')
 			allowInsecureProtocol = true
 			credentials {
 				username 'admin'

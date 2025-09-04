@@ -7,8 +7,10 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.StandardCopyOption;
 
 import org.gradle.api.DefaultTask;
+import org.gradle.api.logging.Logger;
 import org.gradle.api.tasks.TaskAction;
 
+import io.github.ultimark.sd.teabreak.ezweb.EzWebPlugin;
 import io.github.ultimark.sd.teabreak.ezweb.exception.WebResourceDeploymentException;
 
 public class HtmlDeployerTask extends DefaultTask {
@@ -20,23 +22,32 @@ public class HtmlDeployerTask extends DefaultTask {
 	public static final String TASK_NAME = "deployHtml";
 	
 	/** モックアップ格納先ディレクトリ */
-	private String sourceDirPath;
+	private String sourceDirPath = EzWebPlugin.MOCKUP_SOURCE_DIR;
 	
 	/** モックアップ展開先ディレクトリ */
-	private String htmlDestDirPath;
+	private String htmlDestDirPath = EzWebPlugin.HTML_DESTINATION_DIR;
 
+	/** ロガー */
+	private Logger logger = getLogger();	
+	
 	@TaskAction
 	public void deployHtml() {
+		
+		logger.info("HTML deployment task start.");
 		
 		/* モックアップ格納先ディレクトリ取得 */
 		final File sourceDir = new File(getProject().getProjectDir(), sourceDirPath);
 		// ディレクトリが存在しない場合は処理終了
 		if (!sourceDir.exists()) {
+			
+			logger.info("mockup source directory does not exist. HTML deployment task end normally.");
 			return;
 		}
 		
 		/* ファイル処理 */
 		processFile(sourceDir, sourceDir);
+		
+		logger.info("HTML deployment task end normally.");
 	}
 	
 	public void sourceDir(String path) {
@@ -53,11 +64,7 @@ public class HtmlDeployerTask extends DefaultTask {
 		
 		for (File file : root.listFiles()) {
 			
-			// HTML以外は無視
-			if (!isHtml(file)) {
-				
-				continue;
-			}
+			logger.info("Processing %s".formatted(file.getAbsolutePath()));
 			
 			// ディレクトリの場合は次のファイルへ
 			if (file.isDirectory()) {
@@ -66,8 +73,16 @@ public class HtmlDeployerTask extends DefaultTask {
 				continue;
 			}
 			
+			// HTML以外は無視
+			if (!isHtml(file)) {
+				
+				logger.info("%s is excluded from processing.".formatted(file.getAbsolutePath()));
+				continue;
+			}
+			
 			// 展開先ディレクトリ取得
 			final File destinationDir = new File(getProject().getProjectDir(), htmlDestDirPath);
+			logger.info("mockup deployment directory : %s".formatted(destinationDir.getAbsolutePath()));
 			
 			// 展開先Fileオブジェクト生成
 			final File destinationFile = new File(
