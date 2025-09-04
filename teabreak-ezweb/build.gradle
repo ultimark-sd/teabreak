@@ -1,6 +1,5 @@
 plugins {
-	id 'java-gradle-plugin'
-	id 'maven-publish'
+	id 'com.gradle.plugin-publish' version '1.2.1'
 }
 
 java {
@@ -23,7 +22,7 @@ gradlePlugin {
 			id = 'io.github.ultimark.sd.teabreak.ezweb'
 			displayName = 'Teabreak EzWeb Plugin'
 			description = 'Original mockup plugin. Any htmls and other static resources can be deployed to Spring Boot managed resources.'
-			tags.set([ 'ultimark' ])
+			tags.set([ 'code generation' ])
 			implementationClass = 'io.github.ultimark.sd.teabreak.ezweb.EzWebPlugin'
 			version = '0.0.1-SNAPSHOT'
 		}

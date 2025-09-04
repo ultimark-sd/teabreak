@@ -1,6 +1,5 @@
 plugins {
-	id 'java-gradle-plugin'
-	id 'maven-publish'
+	id 'com.gradle.plugin-publish' version '1.2.1'
 }
 
 java {
@@ -23,7 +22,7 @@ gradlePlugin {
 			id = 'io.github.ultimark.sd.teabreak.codegen'
 			displayName = 'Teabreak CodeGen Plugin'
 			description = 'Code generation plugin based on Doma CodeGen plugin.'
-			tags.set([ 'ultimark' ])
+			tags.set([ 'utility' ])
 			implementationClass = 'io.github.ultimark.sd.teabreak.codegen.CodeGeneratorPlugin'
 			version = '0.0.1-SNAPSHOT'
 		}
