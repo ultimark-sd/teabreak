@@ -66,9 +66,7 @@ To change the storage location or deployment destination for mockups, please con
 		sourceDir 'path/to/your/mockup/files'
 		htmlDestDir 'path/to/your/destination/directory'
 	}
-	```
-
-	```
+ 
 	deployStaticResources {
 		sourceDir 'path/to/your/mockup/files'
 		resourceDestDir 'path/to/your/destination/directory'
