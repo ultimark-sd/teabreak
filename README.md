@@ -61,14 +61,14 @@ teabreak-ezweb is a Gradle plugin for deploying mockup HTML and static resources
 By making the above settings, the two tasks deployHtml and deployStaticResources will become executable.
 To change the storage location or deployment destination for mockups, please configure the following in your build.gradle.
 
-	```
-	deployHtml {
-		sourceDir 'path/to/your/mockup/files'
-		htmlDestDir 'path/to/your/destination/directory'
-	}
- 
-	deployStaticResources {
-		sourceDir 'path/to/your/mockup/files'
-		resourceDestDir 'path/to/your/destination/directory'
-	}
- 	```
+```
+deployHtml {
+	sourceDir 'path/to/your/mockup/files'
+	htmlDestDir 'path/to/your/destination/directory'
+}
+
+deployStaticResources {
+	sourceDir 'path/to/your/mockup/files'
+	resourceDestDir 'path/to/your/destination/directory'
+}
+```
