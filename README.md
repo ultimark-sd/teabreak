@@ -17,9 +17,9 @@ teabreak-codegen is a code generation plugin based on Doma CodeGen. It automatic
 	}
 
 - Configure the plugin settings using the domaCodeGen block.
-	
+
+	```
 	domaCodeGen {
-	
 		register("postgresql") {
 			url.set("jdbc:postgresql://localhost:5432/database-name")
 			user.set("username")
@@ -38,6 +38,7 @@ teabreak-codegen is a code generation plugin based on Doma CodeGen. It automatic
 			}
 		}
 	}
+ 	```
 
 By configuring the above settings, tasks such as domaCodeGenPostgresqlAll, domaCodeGenPostgresqlEntity, and domaCodeGenPostgresqlDao become available.For details on various configuration methods, refer to the [Doma CodeGen reference](https://docs.domaframework.org/en/stable/codegen/#configuration-reference).
 
