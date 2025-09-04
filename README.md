@@ -11,7 +11,7 @@ teabreak-codegen is a code generation plugin based on Doma CodeGen. It automatic
 	}
 
 - Specify the JDBC driver in the dependencies block.
-  
+  	
 	dependencies {
 		domaCodeGen 'org.postgresql:postgresql:42.7.7'
 	}
